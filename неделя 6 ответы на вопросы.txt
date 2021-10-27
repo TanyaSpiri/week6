@@ -1,0 +1,59 @@
+1. fr - гибкая единица измерения, которая рассчитывается исходя из количества доступного пространства в grid-контейнере.
+2. .container {
+display: grid;
+grid-template-columns: 20% 20% 20% 20% 20%;
+} или
+.container {
+display: grid;
+grid-template-columns: repeat (5, 20%);
+}
+3. auto-fit и auto-fill - фичи для управления свободным местом в grid-контейнере.
+Auto-fill пытается поместить наибольшее количество повторяющихся элементов в колонку, сколько их может уместиться без переполнения. Когда места для добавления другого элемента не хватает, следующий элемент будет размещён на следующей строке, а это место, которое он не смог заполнить, останется пустым.
+Auto-fit ведёт себя почти как auto-fill, за исключением того, что любая пустая область будет схлопываться и растягивать элементы в этой строке – напоминая поведение флексбоксов, когда по мере уменьшения доступного пространства колонки схлопываются.
+4. HTML:
+<div class="container">
+        <div class="cell" style="background-color: blue;">текст</div>
+        <div class="cell" style="background-color: blue;">текст</div>
+        <div class="cell" style="background-color: blue;">текст</div>
+        <div class="cell" style="background-color: blue;">текст</div>
+        <div class="cell" style="background-color: blue;">текст</div>
+        <div class="cell" style="background-color: blue;">текст</div>
+    </div>
+CSS:
+        .cell {
+            border: 3px solid black;
+        }
+        .container {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 100px 30% 50%;
+            grid-template-rows: 200px 100px;
+        }
+5. align-content: space-between; 
+6. grid area - это пространство внутри grid контейнера, в которое может быть помещен один или больше grid элементов. Может состоять из одной или более grid ячеек. Можно задать с помощью {
+    grid-area:
+} или {
+    grid-template-areas:
+}
+7. HTML:
+<div class="container">
+<header class="header">Шапка</header>
+  <nav class="nav">Меню</nav>
+  <main class="main">Основная часть</main>
+  <footer class="footer">Футер</footer>
+</div>
+CSS:
+     .container {
+            display: grid;
+            grid-template-areas: "header header"
+                                 "nav main"
+                                 "footer footer";
+}
+Сверху будет Шапка по всей длине, слева Меню, справа Основная часть и снизу Футер по всей длине.
+8. auto-fit.
+9. В гридах можно задавать не только именованные области, но и создавать индивидуальные имена даже для обычных линий. Назвав линии, можно использовать их имена вместо номеров при позиционировании элементов на сетке.
+Имя может быть любым, кроме ключевого слова span. Для начальных линий часто использует название с суффиксом -start, для конечных - с суффиксом -end, например main-start и main-end. Имена линий пишутся в квадратных скобках.
+10. .container {
+display: grid;
+grid-template-columns: repeat (12, 1fr);
+}
